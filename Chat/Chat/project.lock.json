@@ -1,0 +1,55 @@
+{
+  "locked": false,
+  "version": 2,
+  "targets": {
+    ".NETPortable,Version=v4.5,Profile=Profile259": {
+      "MarkdownSharp.Portable/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/MarkdownSharp.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/MarkdownSharp.Portable.dll": {}
+        }
+      },
+      "Zlib.Portable/1.11.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid/Zlib.Portable.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid/Zlib.Portable.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MarkdownSharp.Portable/1.0.2": {
+      "sha512": "X7Dpjuhiz+7Oe3HC57MqgU3Q8ciJ17MU5Vkv0oNIgjae8dFdxYenjjqbAxH+aFfyozFD6xJl2pT5bckYIIsBNg==",
+      "type": "package",
+      "files": [
+        "MarkdownSharp.Portable.1.0.2.nupkg.sha512",
+        "MarkdownSharp.Portable.nuspec",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/MarkdownSharp.Portable.dll",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/MarkdownSharp.Portable.dll.mdb"
+      ]
+    },
+    "Zlib.Portable/1.11.0": {
+      "sha512": "T8FoSv/7DuP4ItfacfiD1a5Ra29e3ogZnK8KnaOhxooxHbNOf0Kj00DIyQqZupzVGB5BkluKJ1/aAFVtMYFUTw==",
+      "type": "package",
+      "files": [
+        "Zlib.Portable.1.11.0.nupkg.sha512",
+        "Zlib.Portable.nuspec",
+        "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid/Zlib.Portable.dll",
+        "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid/Zlib.Portable.xml"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [
+      "MarkdownSharp.Portable >= 1.0.2",
+      "Zlib.Portable >= 1.11.0"
+    ],
+    ".NETPortable,Version=v4.5,Profile=Profile259": []
+  }
+}
