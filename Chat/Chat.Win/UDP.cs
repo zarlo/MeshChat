@@ -19,6 +19,7 @@ namespace Chat.Win
             IPEndPoint iep = new IPEndPoint(IPAddress.Broadcast, 5899);
 
             sock.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, 1);
+            sock.EnableBroadcast = true;
             try
             {
 
