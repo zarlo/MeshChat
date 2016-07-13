@@ -9,6 +9,20 @@ namespace Chat.Common
     public class Uilt
     {
 
+        public static string Keygen(int l)
+        {
+            string temp = "";
+            for (int i = 0; i<=l - 1; i++)
+            {
+
+                temp += Randomgen(3) + "-";
+
+            }
+            temp += Randomgen(3);
+
+            return temp;
+        }
+
         public static string Randomgen(int l, string c)
         {
             string s = c;

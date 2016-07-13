@@ -66,9 +66,9 @@ namespace Chat.Common
             this.dataIdentifier = DataIdentifier.Null;
             this.message = null;
             this.name = null;
-            this.ID = Common.Uilt.Randomgen(10);
+            this.ID = Common.Uilt.Keygen(4);
             
-                      
+        
         }
 
         public Packet(byte[] dataStream)
