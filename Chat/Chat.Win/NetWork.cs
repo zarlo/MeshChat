@@ -84,9 +84,7 @@ namespace Chat.Win
                 OverFlow();
                 Servers[iServers] = conn;
             }
-
             iServers++;
-
         }
 
         public static void AutoJoin()
@@ -104,10 +102,8 @@ namespace Chat.Win
 
         public static void Receive(Common.Packet Packet)
         {
-
             if (!hasReceive(Packet.MessageID))
             {
-
                 if (Packet.ChatDataIdentifier == Common.DataIdentifier.Command)
                 {
                     if (Packet.ChatMessage.StartsWith("PONG"))
@@ -121,19 +117,15 @@ namespace Chat.Win
                 }
             }
         }
-        static ChatForm MainChatForm;
         public static void ChatOutput(Common.Packet Packet)
         {
-
-
+            
             try
-            {
-                MainChatForm.AppendOutPut(Packet.ChatName + ">" + Packet.ChatMessage);
+            {   
             }
             catch (SystemException ex)
             {
                 MessageBox.Show(ex.ToString());
-
             }
 
         }

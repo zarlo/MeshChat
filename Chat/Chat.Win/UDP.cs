@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.Windows.Forms;
@@ -22,7 +18,7 @@ namespace Chat.Win
             sock.EnableBroadcast = true;
             try
             {
-
+                
                 sock.SendTo(MSG.GetDataStream(), iep);
 
             }
@@ -57,8 +53,6 @@ namespace Chat.Win
                     Console.WriteLine(e.ToString());
                 }
             }
-
         }
-
     }
 }

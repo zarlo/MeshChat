@@ -14,12 +14,9 @@ namespace Chat.Common
             string temp = "";
             for (int i = 0; i<=l - 1; i++)
             {
-
                 temp += Randomgen(3) + "-";
-
             }
             temp += Randomgen(3);
-
             return temp;
         }
 

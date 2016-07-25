@@ -15,8 +15,7 @@ namespace Chat.Win
         {
             UDPThread = new Thread(new ThreadStart(UDP.Receive));
             UDPThread.Start();
-
-
+            
         }
         
         public static void Init()
@@ -25,15 +24,14 @@ namespace Chat.Win
             Ping.ChatDataIdentifier = Common.DataIdentifier.Message;
             Ping.ChatMessage = "PING";
             Ping.ChatName = "{}";
-
-            UDP.Send(Ping);
             
+            UDP.Send(Ping);
         }
 
         public static void PostInit()
         {
 
-
+            
 
         }
         

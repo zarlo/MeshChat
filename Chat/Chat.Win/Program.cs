@@ -22,10 +22,7 @@ namespace Chat.Win
             Boot.PreInit();
             Boot.Init();
             Boot.PostInit();
-
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChatForm());
+                        
         }
     }
 }
