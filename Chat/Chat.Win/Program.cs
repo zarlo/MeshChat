@@ -22,7 +22,7 @@ namespace Chat.Win
             Boot.PreInit();
             Boot.Init();
             Boot.PostInit();
-                        
+            Application.Run(new Login());   
         }
     }
 }

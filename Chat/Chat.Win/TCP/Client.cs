@@ -1,11 +1,7 @@
 ﻿using Chat.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chat.Win.TCP
 {
@@ -19,24 +15,33 @@ namespace Chat.Win.TCP
         private EndPoint epServer;
 
         private byte[] dataStream = new byte[1024];
-        
-        public Client(string ip)
-        {
 
+        public Client(string ip )
+        {
+            Init(ip, 5899);
+        }
+
+        public Client(string ip, int port)
+        {
+            Init(ip, port);
+        }
+
+        private void Init(string ip, int port)
+        {
             try
             {
-                
+
                 Packet sendData = new Packet();
                 sendData.ChatName = this.name;
                 sendData.ChatMessage = null;
                 sendData.ChatDataIdentifier = DataIdentifier.LogIn;
                 sendData.MessageID = Uilt.Randomgen(10);
-                
+
                 this.clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
                 IPAddress serverIP = IPAddress.Parse(ip.Trim());
 
-                IPEndPoint server = new IPEndPoint(serverIP, 5899);
+                IPEndPoint server = new IPEndPoint(serverIP, port);
 
                 epServer = (EndPoint)server;
 
@@ -50,9 +55,8 @@ namespace Chat.Win.TCP
             }
             catch (Exception ex)
             {
-            //    MessageBox.Show("Connection Error: " + ex.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    MessageBox.Show("Connection Error: " + ex.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
 
         }
 
@@ -91,7 +95,7 @@ namespace Chat.Win.TCP
 
                 if (receivedData.ChatMessage != null)
                 {
-                    NetWork.Receive(receivedData);
+                    Globals.NW.Receive(receivedData);
                 }
 
                 // Reset data stream

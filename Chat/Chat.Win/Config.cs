@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Chat.Win
 {
-    public class Var
+   public class Config
     {
 
-        public static string Username;
-        public static string Password;
+        public static string Name;
+        public static string ID;
         public static string ChatKey;
-        public static string Nick;
-        public static string UUID;
+
 
     }
 }

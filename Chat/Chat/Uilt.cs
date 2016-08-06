@@ -12,7 +12,7 @@ namespace Chat.Common
         public static string Keygen(int l)
         {
             string temp = "";
-            for (int i = 0; i<=l - 1; i++)
+            for (int i = 0; i<l; i++)
             {
                 temp += Randomgen(3) + "-";
             }
@@ -35,15 +35,9 @@ namespace Chat.Common
 
         public static string Randomgen(int l)
         {
-            string s = "abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_=!@#$%^&'*☺☻♥♦♣♠•◘○◙♀♂♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼";        
+            string s = "abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_=!@#$%^&'*☺☻♥♦♣♠•◘○◙♀♂♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼ã┼─├┬┴└┐¢╝╗║Ìþ";        
             return Randomgen(l,s);
         }
-
-        public string MarkDown(string MD)
-        {
-
-            return MD;
-        }
-
+        
     }
 }

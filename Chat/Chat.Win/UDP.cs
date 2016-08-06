@@ -2,13 +2,22 @@
 using System.Net.Sockets;
 using System.Net;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Chat.Win
 {
     public  class UDP
     {
-        
-        public static void Send(Common.Packet MSG)
+        public static Thread UDPThread;
+        public UDP()
+        {
+
+            UDPThread = new Thread(new ThreadStart(this.Receive));
+            UDPThread.Start();
+
+        }
+
+        public void Send(Common.Packet MSG)
         {
             
             Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -27,15 +36,15 @@ namespace Chat.Win
                 MessageBox.Show(ex.ToString());
 
             }
-
-            
+                        
             sock.Close();
 
         }
 
-        public static void Receive()
+        public void Receive()
         {
             while (true) {
+
                 UdpClient receivingUdpClient = new UdpClient();
 
                 IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 5899);
@@ -44,7 +53,7 @@ namespace Chat.Win
 
                     byte[] receiveBytes = receivingUdpClient.Receive(ref RemoteIpEndPoint);
                     
-                    NetWork.Receive(new Common.Packet(receiveBytes));
+                    Globals.NW.Receive(new Common.Packet(receiveBytes));
 
                     receivingUdpClient.Close();
                 }

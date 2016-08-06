@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Chat.Common
 {
-// ----------------
-// Packet Structure
-// ----------------
 
-// Description   -> |dataIdentifier|name length|message length|  ID length   |    ID   |   name    |    message   |
-// Size in bytes -> |       4      |     4     |       4      |      4       |ID length|name length|message length|
-//
+    // ----------------
+    // Packet Structure
+    // ----------------
+    
+    // Description   -> |dataIdentifier|name length|message length|  ID length   |    ID   |   name    |    message   |
+    // Size in bytes -> |       4      |     4     |       4      |      4       |ID length|name length|message length|
+    //
 
     public enum DataIdentifier
     {
@@ -25,6 +25,7 @@ namespace Chat.Common
 
     public class Packet
     {
+
         #region Private Members
         private DataIdentifier dataIdentifier;
         private string name;
@@ -34,22 +35,24 @@ namespace Chat.Common
         #endregion
 
         #region Public Properties
+
         public DataIdentifier ChatDataIdentifier
         {
             get { return dataIdentifier; }
             set { dataIdentifier = value; }
         }
-              
-        public string ChatName
-        {
-            get { return name; }
-            set { name = value; }
-        }
+         
 
         public string MessageID
         {
             get { return ID; }
             set { ID = value; }
+        }
+
+        public string ChatName
+        {
+            get { return name; }
+            set { name = value; }
         }
 
         public string ChatMessage
@@ -131,5 +134,6 @@ namespace Chat.Common
             return dataStream.ToArray();
         }
         #endregion
+
     }
 }

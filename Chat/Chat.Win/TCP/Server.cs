@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using Chat.Common;
 
 namespace Chat.Win.TCP
@@ -16,9 +12,7 @@ namespace Chat.Win.TCP
         
         private ArrayList clientList;
         private Socket serverSocket;
-        private byte[] dataStream = new byte[1024];
-       
-        
+        private byte[] dataStream = new byte[1024];      
 
         private struct Client
         {
@@ -66,7 +60,7 @@ namespace Chat.Win.TCP
                 switch (receivedData.ChatDataIdentifier)
                 {
                     case DataIdentifier.Message:
-                        //sendData.ChatMessage = string.Format("{0}: {1}", receivedData.ChatName, receivedData.ChatMessage);
+                        sendData.ChatMessage = string.Format("{0}: {1}", receivedData.ChatName, receivedData.ChatMessage);
                         break;
 
                     case DataIdentifier.LogIn:

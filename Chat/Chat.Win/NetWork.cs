@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Net.Sockets;
-using System.Windows.Forms;
 
 namespace Chat.Win
 {
@@ -15,7 +9,7 @@ namespace Chat.Win
 
         public TCP.Client TC;
 
-        public string Name;
+        public string Name { get; private set; }
 
         public ConnectTCP(string name, string ip)
         {
@@ -29,107 +23,81 @@ namespace Chat.Win
 
     public class NetWork
     {
-        private static int iServers = 0;
-        private static int iServersLimit = 3;
         private static Boolean isTCP = false;
-        private static ConnectTCP[] Servers = new ConnectTCP[iServersLimit];
+        private static List<ConnectTCP> Servers = new List<ConnectTCP>();
 
+        public delegate void ReceiveMSG(Common.Packet MSG);
+        public event ReceiveMSG Receivemsg;
 
+        public string Name { get; private set; }
 
-        public static void Send(Common.Packet MSG)
+        private UDP udp;
+
+        public NetWork(string name)
         {
+
+            Name = name;
+            Common.Packet Ping = new Common.Packet();
+            Ping.ChatDataIdentifier = Common.DataIdentifier.Command;
+            Ping.ChatMessage = "PING";
+            Ping.ChatName = name;
+
+            udp.Send(Ping);
+
+            Ping.ChatDataIdentifier = Common.DataIdentifier.LogIn;
+            Ping.ChatMessage = "";
+            Ping.ChatName = name;
+
+            Send(Ping);
+
+        }
+
+        public void Send(Common.Packet MSG)
+        {
+            MSG.ChatName = Name;
             if (isTCP)
             {
-                for (int i = 0; i <= iServers - 1; i++)
+                for (int i = 0; i <= Servers.Count - 1; i++)
                 {
                     Servers[i].TC.Send(MSG);
                 }
             }
-            UDP.Send(MSG);
-
+            udp.Send(MSG);
         }
 
-        private static void OverFlow()
-        {
-
-            ConnectTCP[] temp = new ConnectTCP[iServersLimit];
-
-            for (int i = 0; i <= iServersLimit - 1; i++)
-            {
-                temp[i] = Servers[i];
-
-            }
-
-            Servers = new ConnectTCP[iServersLimit + 5];
-            iServers = 0;
-
-            for (int i = 0; i <= iServersLimit - 1; i++)
-            {
-                Servers[i] = temp[i];
-            }
-
-            iServers = iServersLimit - 1;
-            iServersLimit = iServersLimit + 5;
-        }
-
-        public static void add(ConnectTCP conn)
+        public void add(ConnectTCP conn)
         {
             isTCP = true;
-            if (iServers != iServersLimit)
-            {
-                Servers[iServers] = conn;
-            }
-            else
-            {
-                OverFlow();
-                Servers[iServers] = conn;
-            }
-            iServers++;
+            Servers.Add(conn);
         }
 
-        public static void AutoJoin()
+        public void AutoJoin()
         {
 
 
+
         }
 
-        public static Boolean hasReceive(string ID)
+        public Boolean hasReceive(string ID)
         {
 
             return false;
 
         }
 
-        public static void Receive(Common.Packet Packet)
+        public void Receive(Common.Packet Packet)
         {
             if (!hasReceive(Packet.MessageID))
             {
                 if (Packet.ChatDataIdentifier == Common.DataIdentifier.Command)
                 {
-                    if (Packet.ChatMessage.StartsWith("PONG"))
-                    {
-
-                    }
+                    
                 }
                 else
                 {
-                    ChatOutput(Packet);
+                    Receivemsg(Packet);
                 }
             }
         }
-        public static void ChatOutput(Common.Packet Packet)
-        {
-            
-            try
-            {   
-            }
-            catch (SystemException ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
-
-
     }
 }
