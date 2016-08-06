@@ -1,29 +1,26 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Chat.Win
 {
-    public class Boot
+    public class Boot : IBoot
     {
-        
-       
-        public static void PreInit()
+        public void Init()
         {
-
-            
-        }
-        
-        public static void Init()
-        {
-
+            throw new NotImplementedException();
         }
 
-        public static void PostInit()
+        public void PostInit()
         {
-
-            
-
+            throw new NotImplementedException();
         }
-        
 
+        public void PreInit()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

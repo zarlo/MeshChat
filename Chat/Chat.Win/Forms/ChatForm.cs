@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Chat.Win
+namespace Chat.Win.Forms
 {
     public partial class ChatForm : Form
     {
@@ -25,8 +25,13 @@ namespace Chat.Win
 
         public void Receivemsg(Common.Packet MSG)
         {
-
+            OutputBox.Text += MSG.ChatName + ":" + MSG.ChatMessage;
         }
 
+        private void ChatForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
+        }
     }
 }

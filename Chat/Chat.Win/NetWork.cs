@@ -29,14 +29,13 @@ namespace Chat.Win
         public delegate void ReceiveMSG(Common.Packet MSG);
         public event ReceiveMSG Receivemsg;
 
-        public string Name { get; private set; }
 
         private UDP udp;
 
         public NetWork(string name)
         {
             udp = new UDP();
-            Name = name;
+            Globals.Name = name;
             Common.Packet Ping = new Common.Packet();
             Ping.ChatDataIdentifier = Common.DataIdentifier.Command;
             Ping.ChatMessage = "PING";
@@ -54,7 +53,7 @@ namespace Chat.Win
 
         public void Send(Common.Packet MSG)
         {
-            MSG.ChatName = Name;
+            MSG.ChatName = Globals.Name;
             if (isTCP)
             {
                 for (int i = 0; i <= Servers.Count - 1; i++)

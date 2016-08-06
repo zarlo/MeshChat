@@ -11,6 +11,7 @@ namespace Chat.Win
 
         public static NetWork NW;
         public static string Name { get; set; }
-
+        public static bool isLogedin { get; set; }
+        public static Forms.ChatForm Chatform;
     }
 }

@@ -4,15 +4,15 @@ using System.Net;
 using System.Net.Sockets;
 using Chat.Common;
 
-namespace Chat.Win.TCP
+namespace TCP
 {
     public class Server
     {
-        
-        
+
+
         private ArrayList clientList = new ArrayList();
         private Socket serverSocket;
-        private byte[] dataStream = new byte[1024];      
+        private byte[] dataStream = new byte[1024];
 
         private struct Client
         {
@@ -22,9 +22,9 @@ namespace Chat.Win.TCP
 
         public Server(int Port)
         {
-            
-            serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Tcp);
-            
+
+            serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
             IPEndPoint server = new IPEndPoint(IPAddress.Any, Port);
 
             serverSocket.Bind(server);
@@ -102,11 +102,11 @@ namespace Chat.Win.TCP
                 }
                 Console.WriteLine(sendData.ChatName + ":" + sendData.ChatMessage);
                 serverSocket.BeginReceiveFrom(dataStream, 0, dataStream.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveData), epSender);
-                       
+
             }
             catch (Exception ex)
             {
-             //   MessageBox.Show("ReceiveData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //   MessageBox.Show("ReceiveData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -119,7 +119,7 @@ namespace Chat.Win.TCP
             }
             catch (Exception ex)
             {
-             //   MessageBox.Show("SendData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //   MessageBox.Show("SendData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

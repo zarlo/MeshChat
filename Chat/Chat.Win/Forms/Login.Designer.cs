@@ -1,4 +1,4 @@
-﻿namespace Chat.Win
+﻿namespace Chat.Win.Forms
 {
     partial class Login
     {

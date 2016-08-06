@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 
 
-namespace Chat.Win
+namespace Chat.Win.Forms
 {
     public partial class Login : Form
     {
@@ -65,12 +65,14 @@ namespace Chat.Win
             dataStream.Close();
             try
             {
+                Globals.Chatform = new ChatForm();
                 response = request.GetResponse();
                 dataStream = response.GetResponseStream();
                 reader = new StreamReader(dataStream);
                 responseFromServer = reader.ReadToEnd();
-                ChatForm CF = new ChatForm();
-                CF.Show();
+                Globals.Name = textBox_UserName.Text;
+                Globals.isLogedin = true;
+                Globals.Chatform.Show();
                 this.Hide();
             } catch
             {
