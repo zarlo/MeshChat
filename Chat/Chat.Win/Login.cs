@@ -46,28 +46,37 @@ namespace Chat.Win
             dataStream.Close();
             response.Close();
 
-
+            string temp = responseFromServer;
             responseFromServer = responseFromServer.Remove(0, 10);
             responseFromServer = responseFromServer.Remove(responseFromServer.Length - 2,2);
-            MessageBox.Show(responseFromServer);
+            //MessageBox.Show(temp + Environment.NewLine + responseFromServer);
             request = WebRequest.Create("http://punksky.xyz/games/user/login.json");
 
             string Data = "{\"username\":\"" + textBox_UserName.Text + "\",\"password\":\"" + textBox_Password.Text + "\"}";
-            MessageBox.Show(Data);
+            //MessageBox.Show(Data);
             request.Method = "POST";
              byteArray = Encoding.UTF8.GetBytes(Data);
             request.Headers.Add("X-CSRF-Token", responseFromServer);
+            
             request.ContentType = "application/json";
             request.ContentLength = byteArray.Length;
              dataStream = request.GetRequestStream();
             dataStream.Write(byteArray, 0, byteArray.Length);
             dataStream.Close();
-             response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-             reader = new StreamReader(dataStream);
-             responseFromServer = reader.ReadToEnd();
-            MessageBox.Show(responseFromServer);
-            reader.Close();
+            try
+            {
+                response = request.GetResponse();
+                dataStream = response.GetResponseStream();
+                reader = new StreamReader(dataStream);
+                responseFromServer = reader.ReadToEnd();
+                ChatForm CF = new ChatForm();
+                CF.Show();
+                this.Hide();
+            } catch
+            {
+                MessageBox.Show("failed to login");
+            }
+                reader.Close();
             dataStream.Close();
             response.Close();
 

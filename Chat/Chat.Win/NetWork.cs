@@ -35,7 +35,7 @@ namespace Chat.Win
 
         public NetWork(string name)
         {
-
+            udp = new UDP();
             Name = name;
             Common.Packet Ping = new Common.Packet();
             Ping.ChatDataIdentifier = Common.DataIdentifier.Command;
